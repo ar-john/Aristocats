@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Art</title>
+    <title>List Item</title>
 
     <!--adding a favicon-->
     
     <link rel="shortcut icon" href="images/trumpetCat.jfif" type="image/jpg">
-
-    <!-- adding stylsheet -->
-    <link rel="stylesheet" href="../css/index_stylesheet.css">
 
 </head>
 <body>
@@ -62,28 +59,36 @@
     </nav>
     <hr>
 
-    <main id="mainContent">
-        <h2>Browse Art</h2>
+    <main>
+        <section id="listItem">
+            
+        <div id="upload">
+            Upload pictures of your product
+            <input type="image" name="picInput">
+        </div>
 
-        <section class="filterOptions">
-            Artist Selections
-            <br>
-            Sort/Filter
+        <div id="itemCategory">
+            Select the category of your item
+            <input type="checkbox" value="Clothing" name="catChkBox">
+        </div>
+
+        <div id="createDate">
+            Enter the date of creation for your product
+            <input type="date" name="dateInput">
+        </div>
+
+        <div id="askPrice">
+            Set your asking price
+            <input type="number" name="priceInput">
+        </div>
+
+        <div id="description"> 
+            Brief description of your product:
+            <input type="text" name="itemDesc" width=15px>
+        </div>
 
         </section>
-        <hr>
-        <!-- this is where the user listing will show
-        they will be pulled from the database and displayed 
-    in order of most recent-->
     </main>
-
-    <aside>
-        
-        <a href="#mainContent"> 
-            <button type="menu"> Back to Top</button>
-        </a>
-
-    </aside>
     
 </body>
 </html>

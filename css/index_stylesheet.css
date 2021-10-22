@@ -1,0 +1,62 @@
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: black;
+    color: rgb(255, 255, 255);
+    
+}
+#navBar{
+    display: inline-block;
+    width: auto;
+    padding: 2px;
+    box-sizing: border-box;
+    background-color: black;
+    color: white;
+    position: fixed;
+    top: 0px;
+    
+}
+
+
+#searchBar{
+    display: inline;
+    margin: 10px;
+}
+
+h1{
+    text-align: left;
+    display: inline-block;
+
+
+}
+
+.categoryDropDown{
+    display: inline;
+    margin: 10px;
+}
+
+#dropMenu{
+    text-align: right;
+    margin: 10px;
+}
+
+#mainContent{
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    padding-top: 150px;
+}
+
+#mainHeader{
+    text-align: center;
+    margin-top: 15px;
+    font-size:xx-large;
+    
+}
+
+#mainLinks{
+    
+    display: inline-block;
+}
+
+/* figure{
+    display:inline;
+} */

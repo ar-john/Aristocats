@@ -6,18 +6,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Items&Collectibles</title>
 
+    <!--adding a favicon-->
+    
+    <link rel="shortcut icon" href="images/trumpetCat.jfif" type="image/jpg">
+
+    <!-- adding stylsheet -->
+    <link rel="stylesheet" href="../css/index_stylesheet.css">
+
+
 </head>
 <body>
 
     <nav id="navBar">
+        <!-- link in header will always take you to homepage -->
+        <a href="/CSI2520_WebDesign/Aristocats/index.html">
         <h1>Aristocats</h1>
-        <span id="searchBar">Search bar</span>
-        <span id="categoryList">Category List</span>
+        </a>
+        <span id="searchBar">
+            Search
+            <input type="search" name="searchInput">
+        </span>
+        <!-- Dropdown list for categories, will take user to selected page from anywhere -->
+        <form class="categoryDropDown">
+            <label>Categories</label>
+            <select>
+                <option value="Clothing">
+                    <a href="html/clothingPage.html">
+                    Clothing
+                </a>
+                </option>
+
+                <option value="Items">
+                    <a href="html/itemsPage.html">
+                    Items
+                </a>
+                </option>
+
+                <option value="Art">
+                    <a href="html/artPage.html">
+                    Art
+                </a>
+                </option>
+
+                <option value="Sculptures">
+                    <a href="html/sculpturePage.html">
+                    Sculptures
+                </a>
+                </option>
+
+            </select>
+            
+        </form>
         <span id="dropMenu">Drop down menu</span>
 
 
     </nav>
     <hr>
+
+    <main id="mainContent">
+        <h2>Browse Items</h2>
+
+        <section class="filterOptions">
+            Artist Selections
+            <br>
+            Sort/Filter
+
+        </section>
+        <hr>
+        <!-- this is where the user listing will show
+        they will be pulled from the database and displayed 
+    in order of most recent-->
+    </main>
+
+    <aside>
+        
+        <a href="#mainContent"> 
+            <button type="menu"> Back to Top</button>
+        </a>
+
+    </aside>
+    
     
 </body>
 </html>
