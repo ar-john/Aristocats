@@ -1,0 +1,36 @@
+{
+  "name": "aristocats",
+  "version": "1.0.0",
+  "description": "CSI2520 WebDesign Project - Aristocats. A website for buying and selling original products.",
+  "main": "index.js",
+  "scripts": {
+    "start": "index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ar-john/Aristocats.git"
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs",
+    "Javascript",
+    "HTML",
+    "CSS"
+  ],
+  "author": "aaron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ar-john/Aristocats/issues"
+  },
+  "homepage": "https://github.com/ar-john/Aristocats#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "handlebars": "^4.7.7",
+    "moment": "^2.29.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.15",
+    "uuid": "^8.3.2"
+  }
+}
