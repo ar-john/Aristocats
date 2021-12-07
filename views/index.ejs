@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+
+    <!--adding a favicon-->
+    
+    <link rel="shortcut icon" href="images/trumpetCat.jfif" type="image/jpg">
+    <!-- adding stylsheet -->
+    <link rel="stylesheet" href="./css/index_stylesheet.css">
+
+
+
+</head>
+<body>
+    <nav id="navBar">
+        <!-- link in header will always take you to homepage -->
+        <a href="index.ejs">
+        <h1>Aristocats</h1>
+        </a>
+        <span id="searchBar">
+            Search
+            <input type="search" name="searchInput">
+        </span>
+        <!-- Dropdown list for categories, will take user to selected page from anywhere -->
+        <form class="categoryDropDown">
+            <label>Categories</label>
+            <select>
+                <option value="Clothing">
+                    <a href="html/clothingPage.ejs">
+                    Clothing
+                </a>
+                </option>
+
+                <option value="Items">
+                    <a href="html/itemsPage.ejs">
+                    Items
+                </a>
+                </option>
+
+                <option value="Art">
+                    <a href="html/artPage.ejs">
+                    Art
+                </a>
+                </option>
+
+                <option value="Sculptures">
+                    <a href="html/sculpturePage.ejs">
+                    Sculptures
+                </a>
+                </option>
+
+            </select>
+            
+        </form>
+        <span id="dropMenu">Drop down menu</span>
+
+        <hr>
+    </nav>
+   
+    
+    <main id="mainContent">
+        <h2 id="mainHeader">Discover Originality & Quality</h2>
+        
+        <!--the following should be buttons that take the user 
+        to that specific location-->
+        <section id="mainLinks">
+            <figure>
+                <h3>Clothing</h3>
+                <a href="html/clothingPage.html" aria-label="Clothing">
+                    <img src="images/top.jpeg" width="20%" alt="link to clothing section" title="Click to visit OU Home Page">
+                    
+                </a>
+            </figure>
+
+            <figure>
+                <h3>Art</h3>
+                <a href="html/artPage.html" aria-label="Art">
+                    <img src="images/art.jfif" width="20%" alt="link to art section" title="Click to visit OU Home Page">
+                </a>
+            </figure>
+
+            <figure>
+                <h3>Items</h3>
+                <a href="html/itemsPage.html" aria-label="Items & Collectibles">
+                    <img src="images/collectItem.jfif" width="20%" alt="link to items section" title="Click to visit OU Home Page">
+                </a>
+            </figure>
+
+            <figure>
+                <h3>Sculptures</h3>
+                <a href="html/sculpturePage.html" aria-label="Sculptures">
+                    <img src="images/scuplt.jfif" width="20%" alt="link to sculptures section" title="Click to visit OU Home Page">
+                </a>
+            </figure>
+        </section>
+    </main>
+
+    <aside>
+        
+        <a href="#mainContent"> 
+            <button type="menu"> Back to Top</button>
+        </a>
+
+    </aside>
+</body>
+</html>

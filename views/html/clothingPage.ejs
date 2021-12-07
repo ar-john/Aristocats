@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing</title>
+
+    <!--adding a favicon-->
+    
+    <link rel="shortcut icon" href="images/trumpetCat.jfif" type="image/jpg">
+
+    <!-- adding stylsheet -->
+    <link rel="stylesheet" href="../css/index_stylesheet.css">
+
+</head>
+<body>
+
+    <nav id="navBar">
+        <!-- link in header will always take you to homepage -->
+        <a href="../index.ejs">
+        <h1>Aristocats</h1>
+        </a>
+        <span id="searchBar">
+            Search
+            <input type="search" name="searchInput">
+        </span>
+        <!-- Dropdown list for categories, will take user to selected page from anywhere -->
+        <form class="categoryDropDown">
+            <label>Categories</label>
+            <select>
+                <option value="Clothing">
+                    <a href="clothingPage.ejs">
+                    Clothing
+                </a>
+                </option>
+
+                <option value="Items">
+                    <a href="itemsPage.ejs">
+                    Items
+                </a>
+                </option>
+
+                <option value="Art">
+                    <a href="artPage.ejs">
+                    Art
+                </a>
+                </option>
+
+                <option value="Sculptures">
+                    <a href="sculpturePage.ejs">
+                    Sculptures
+                </a>
+                </option>
+
+            </select>
+            
+        </form>
+        <span id="dropMenu">Drop down menu</span>
+
+
+    </nav>
+    <hr>
+
+    <main id="mainContent">
+        <h2>Browse Clothing</h2>
+
+        <section class="filterOptions">
+            Artist Selections
+            <br>
+            Sort/Filter
+
+        </section>
+        <hr>
+        <!-- this is where the user listing will show
+        they will be pulled from the database and displayed 
+    in order of most recent-->
+    </main>
+
+    <aside>
+        
+        <a href="#mainContent"> 
+            <button type="menu"> Back to Top</button>
+        </a>
+
+    </aside>
+    
+    
+</body>
+</html>
