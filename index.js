@@ -1,9 +1,32 @@
 const express = require('express');
 const ejs = require('ejs');
 const path = require("path");
+const mysql = require("mysql");
 
 //create express app
 const app = express();
+
+
+
+// Create a database connection configuration
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "root",
+    database: "aristocats_db", // comment out if running example 1
+});
+
+// Establish connection with the DB
+db.connect((err) => {
+    if (err) {
+      throw err;
+    } else {
+      console.log(`Successful connected to the DB....`);
+    }
+});
+
+
+
 
 //initialize body parser midddleware to parse data sent by users
 app.use(express.json());
@@ -53,6 +76,9 @@ app.get("/html/viewListedItem.ejs", (req,res) => {
 app.get("/index.ejs", (req,res) => {
     res.render("index");
 });
+
+
+
 
 
 

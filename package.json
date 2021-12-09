@@ -16,7 +16,8 @@
     "expressjs",
     "Javascript",
     "HTML",
-    "CSS"
+    "CSS",
+    "mysql"
   ],
   "author": "aaron",
   "license": "ISC",

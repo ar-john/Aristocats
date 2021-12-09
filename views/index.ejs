@@ -28,27 +28,27 @@
         <!-- Dropdown list for categories, will take user to selected page from anywhere -->
         <form class="categoryDropDown">
             <label>Categories</label>
-            <select>
-                <option value="Clothing">
-                    <a href="./html/clothingPage.ejs">
+            <select name="link" onchange="location = this.value;">
+                <option value="./html/clothingPage.ejs">
+                    <!-- <a href="./html/clothingPage.ejs"> -->
                     Clothing
                 </a>
                 </option>
 
-                <option value="Items">
-                    <a href="./html/itemsPage.ejs">
+                <option value="./html/itemsPage.ejs">
+                    <!-- <a href="./html/itemsPage.ejs"> -->
                     Items
                 </a>
                 </option>
 
-                <option value="Art">
-                    <a href="./html/artPage.ejs">
+                <option value="./html/artPage.ejs">
+                    <!-- <a href="./html/artPage.ejs"> -->
                     Art
                 </a>
                 </option>
 
-                <option value="Sculptures">
-                    <a href="./html/sculpturePage.ejs">
+                <option value="./html/sculpturePage.ejs">
+                    <!-- <a href="./html/sculpturePage.ejs"> -->
                     Sculptures
                 </a>
                 </option>
@@ -68,7 +68,7 @@
         <!--the following should be buttons that take the user 
         to that specific location-->
         <section id="mainLinks">
-            <figure>
+            <figure class="cat_img">
                 <h3>Clothing</h3>
                 <a href="html/clothingPage.ejs" aria-label="Clothing">
                     <img src="../public/images/top.jpeg" width="20%" alt="link to clothing section" title="Click to visit OU Home Page">
@@ -76,21 +76,21 @@
                 </a>
             </figure>
 
-            <figure>
+            <figure class="cat_img">
                 <h3>Art</h3>
                 <a href="html/artPage.ejs" aria-label="Art">
                     <img src="../public/images/art.jfif" width="20%" alt="link to art section" title="Click to visit OU Home Page">
                 </a>
             </figure>
 
-            <figure>
+            <figure class="cat_img">
                 <h3>Items</h3>
                 <a href="html/itemsPage.ejs" aria-label="Items & Collectibles">
                     <img src="../public/images/collectItem.jfif" width="20%" alt="link to items section" title="Click to visit OU Home Page">
                 </a>
             </figure>
 
-            <figure>
+            <figure class="cat_img">
                 <h3>Sculptures</h3>
                 <a href="html/sculpturePage.ejs" aria-label="Sculptures">
                     <img src="../public/images/scuplt.jfif" width="20%" alt="link to sculptures section" title="Click to visit OU Home Page">

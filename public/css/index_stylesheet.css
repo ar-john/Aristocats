@@ -6,7 +6,8 @@ body{
 }
 #navBar{
     display: inline-block;
-    width: auto;
+    width: 100%;
+	/* float: left; */
     padding: 2px;
     box-sizing: border-box;
     background-color: black;
@@ -54,9 +55,19 @@ h1{
 
 #mainLinks{
     
-    display: inline-block;
+    /* align-items: center; */
+    text-align: center;
+    /* min-width: 25%;
+    width: fit-content;
+    max-width: 80%; */
 }
 
 /* figure{
     display:inline;
 } */
+
+.cat_img{
+    /* padding-left: 40%; */
+    font-size: 36px;
+    
+}
