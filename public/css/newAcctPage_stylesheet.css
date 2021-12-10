@@ -1,0 +1,29 @@
+body{
+    background-color: black;
+    
+}
+
+h1{
+    text-align: center;
+    /* width: 20cm; */
+}
+
+#loginSection{
+    /* display: inline-block; */
+    text-align: center;
+    /* width: 25cm; */
+}
+
+#loginForm{
+    display: inline-block;
+    font-size: 20px;
+    color: white;
+}
+
+#fNameLabel{
+    /* display:block */
+}
+
+#lNameLabel{
+    /* display: inline-block; */
+}

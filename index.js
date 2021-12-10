@@ -57,8 +57,8 @@ app.get("/html/listItem.ejs", (req,res) => {
     res.render("./html/listItem.ejs");
 });
 
-app.get("/html/loginPage.ejs", (req,res) => {
-    res.render("./html/loginPage.ejs");
+app.get("/html/newAcctPage.ejs", (req,res) => {
+    res.render("./html/newAcctPage.ejs");
 });
 
 app.get("/html/sculpturePage.ejs", (req,res) => {
@@ -77,8 +77,18 @@ app.get("/index.ejs", (req,res) => {
     res.render("index");
 });
 
+// server functions
 
-
+app.post("/insertUsers/", (req, res) => {
+    let data = { fName: req.body.fName, lName: req.body.lName, email: req.body.email, pass: req.body.passwd };
+    let sql = `INSERT INTO users SET ?`;
+    let query = db.query(sql, data, (err, result) => {
+      if (err) {
+        throw err;
+      }
+      res.send(`user entry was inserted to the db...`);
+    });
+  });
 
 
 

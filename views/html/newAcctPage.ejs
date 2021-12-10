@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="shortcut icon" href="../public/images/trumpetCat.jfif" type="image/jpg">
+    <!-- adding stylsheet -->
+    <link rel="stylesheet" href="../../public/css/newAcctPage_stylesheet.css">
+
+</head>
+<body>
+    <main>
+        <h1>Create your account</h1>
+        <!-- code refrence
+            cite https://www.w3schools.com/tags/tag_input.asp#:~:text=HTML%20%3Cinput%3E%20Tag%201%20Definition%20and%20Usage.%20The,%3Cinput%20type%3D%22password%22%3E.%203%20Browser%20Support%204%20Attributes.%20 -->
+        <section id="loginSection">
+            <form id="loginForm" action="/insertUsers/">
+                <label for="Email" id="emailLabel">Email:</label>
+                <input type="text" id="email" name="email"><br>
+
+                <label for="passwd" id="passLabels">Password:</label>
+                <input type="password" id="passwd" name="passwd"><br>
+                
+                <label for="fName" id="fNameLabel"> First Name: </label>
+                <input type="text" id="fName" name="fName"><br>
+
+                <label for="lName" id="lNameLabel"> Last Name: </label>
+                <input type="text" id="lName" name="lName"><br>
+
+                <input type="submit" value="Submit" id="submitBtn">
+              </form>
+        </section>
+    </main>
+    
+</body>
+</html>
