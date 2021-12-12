@@ -9,7 +9,7 @@
     <!--adding a favicon-->
     
     <link rel="shortcut icon" href="../../public/images/trumpetCat.jfif" type="image/jpg">
-
+    <!-- <script src="../../itemtype.js" defer></script> -->
 </head>
 <body>
 
@@ -60,11 +60,11 @@
     <hr>
 
     <main>
-        <section id="listItem">
+        <section id="listItem" action="/insertItem" method="post">
             <!-- section to upload photo of item -->
             <div id="upload">
             Upload pictures of your product
-                <input type="file" name="fileInput" name="filename">
+                <input type="file" id="filename" name="filename">
                 <!-- <input type="submit"> -->
             </div>
 
@@ -72,20 +72,20 @@
             <div id="itemType">
             Select the category of your item
                 <br>
-                <input type="checkbox" id="clothingBox" value="Clothing" name="clothingBox">
+                <input type="checkbox" id="clothingBox" value="Clothing" name="itemType">
                 <label for="clothingBox">Clothing </label> <br>
-                <input type="checkbox" id="itemBox" value="Item" name="itemBox">
+                <input type="checkbox" id="itemBox" value="Item" name="itemType">
                 <label for="itemBox">Item </label> <br>
-                <input type="checkbox" id="artBox" value="Art" name="artBox">
+                <input type="checkbox" id="artBox" value="Art" name="itemType">
                 <label for="artBox">Art </label> <br>
-                <input type="checkbox" id="sculptBox" value="Sculpture" name="sculptBox">
+                <input type="checkbox" id="sculptBox" value="Sculpture" name="itemType">
                 <label for="sculptBox">Sculpture </label> <br>
             </div>
-            <input name="SelectedValues" type="hidden" value="">
+            
             <!-- section to add the date of creation -->
             <div id="creationDate">
             Enter the date of creation for your product
-                <input type="date" name="dateInput">
+                <input type="date" name="creationDate">
             </div>
             <!-- get price input -->
             <div id="itemPrice">
@@ -101,6 +101,12 @@
             <div id="itemDesc"> 
             Brief description of your product:
                 <input type="text" name="itemDesc" width=15px>
+            </div>
+
+            <!-- account email -->
+            <div id="userEmail">
+                Provide the email on your account:
+                <input type="text" name="userEmail">
             </div>
             <!-- submit button -->
             <div>
