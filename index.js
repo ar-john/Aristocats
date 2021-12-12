@@ -79,18 +79,30 @@ app.get("/index.ejs", (req,res) => {
 
 // server functions
 
-app.post("/insertUsers/", (req, res) => {
+app.post("/insertUsers", (req, res) => {
     let data = { fName: req.body.fName, lName: req.body.lName, email: req.body.email, pass: req.body.passwd };
     let sql = `INSERT INTO users SET ?`;
     let query = db.query(sql, data, (err, result) => {
       if (err) {
         throw err;
       }
-      res.send(`user entry was inserted to the db...`);
+    //   res.send(`user entry was inserted to the db...`);
+      res.render("index");
     });
   });
 
-
+// this is the post method that will excecute on submit
+// to add an item to the database
+app.post("insertItem", (req,res) => {
+    let data = { item_name: req.body.itemName, item_type: req.body.itemType, item_price: req.body.itemPrice,
+    item_img: req.body.filename, creation_date: req.body.creationDate, item_desc: req.body.itemDesc };
+    let sql = `INSERT INTO items SET ?`;
+    let query = db.query (sql, data, (err, result) => {
+        if (err){
+            throw err;
+        }
+    });
+});
 
 // set PORT
 const PORT = process.env.PORT || 3000;

@@ -61,31 +61,51 @@
 
     <main>
         <section id="listItem">
-            
-        <div id="upload">
+            <!-- section to upload photo of item -->
+            <div id="upload">
             Upload pictures of your product
-            <input type="image" name="picInput">
-        </div>
+                <input type="file" name="fileInput" name="filename">
+                <!-- <input type="submit"> -->
+            </div>
 
-        <div id="itemCategory">
+            <!-- check boxes for item category selection -->
+            <div id="itemType">
             Select the category of your item
-            <input type="checkbox" value="Clothing" name="catChkBox">
-        </div>
-
-        <div id="createDate">
+                <br>
+                <input type="checkbox" id="clothingBox" value="Clothing" name="clothingBox">
+                <label for="clothingBox">Clothing </label> <br>
+                <input type="checkbox" id="itemBox" value="Item" name="itemBox">
+                <label for="itemBox">Item </label> <br>
+                <input type="checkbox" id="artBox" value="Art" name="artBox">
+                <label for="artBox">Art </label> <br>
+                <input type="checkbox" id="sculptBox" value="Sculpture" name="sculptBox">
+                <label for="sculptBox">Sculpture </label> <br>
+            </div>
+            <input name="SelectedValues" type="hidden" value="">
+            <!-- section to add the date of creation -->
+            <div id="creationDate">
             Enter the date of creation for your product
-            <input type="date" name="dateInput">
-        </div>
-
-        <div id="askPrice">
-            Set your asking price
-            <input type="number" name="priceInput">
-        </div>
-
-        <div id="description"> 
+                <input type="date" name="dateInput">
+            </div>
+            <!-- get price input -->
+            <div id="itemPrice">
+            Set your asking price: $
+                <input type="number" name="itemPrice">
+            </div>
+            <!-- name of item -->
+            <div id="itemName">
+                Name of Item: 
+                <input type="text" name="itemName">
+            </div>
+            <!-- add description of product -->
+            <div id="itemDesc"> 
             Brief description of your product:
-            <input type="text" name="itemDesc" width=15px>
-        </div>
+                <input type="text" name="itemDesc" width=15px>
+            </div>
+            <!-- submit button -->
+            <div>
+                <input type="submit" name="submitItem" id="submitItem">
+            </div>
 
         </section>
     </main>
