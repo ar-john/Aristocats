@@ -3,6 +3,10 @@ const ejs = require('ejs');
 const path = require("path");
 const mysql = require("mysql");
 
+//require multer
+const multer = require('multer');
+
+
 
 //create express app
 const app = express();
@@ -14,7 +18,7 @@ const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "root",
-    database: "aristocats_db", // comment out if running example 1
+    database: "aristocats_db", //connection name
 });
 
 // Establish connection with the DB
@@ -27,6 +31,45 @@ db.connect((err) => {
 });
 
 
+//multer code
+
+//storage
+let storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+      callback(null, DIR);
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+ 
+let upload = multer({storage: storage});
+//multer img upload thing
+app.post('/api/v1/upload',upload.single('filename1'), function (req, res) {
+    // message : "Error! in image upload."
+    //   if (!req.file) {
+    //       console.log("No file received");
+    //         message = "Error! in image upload."
+    //       res.render('index',{message: message, status:'danger'});
+      
+    //     } else {
+    //       console.log('file received');
+    //       console.log(req);
+    //       var sql = "INSERT INTO `file`(`name`, `type`, `size`) VALUES ('" + req.file.filename + "', '"+req.file.mimetype+"', '"+req.file.size+"')";
+   
+    //               var query = db.query(sql, function(err, result) {
+    //                  console.log('inserted data');
+    //               });
+    //       message = "Successfully! uploaded";
+    //       res.render('index',{message: message, status:'success'});
+   
+    //     }
+    console.log(req.file, req.body);
+  });
+
+
+
+
 
 
 //initialize body parser midddleware to parse data sent by users
@@ -37,7 +80,7 @@ app.use(express.urlencoded({extended: false }));
 app.set("view engine", "ejs");
 app.use("/public", express.static(__dirname + "/public"));
 
-//ALL ROUTES
+//ALL ROUTES - GET
 app.get("/", (req,res) => {
     res.render("index");
 });
@@ -82,7 +125,7 @@ app.get("/html/itemListed.ejs", (req,res) => {
     res.render("./html/itemListed.ejs");
 })
 
-// server functions
+// server functions POST
 
 app.post("/insertUsers", (req, res) => {
     let data = { fName: req.body.fName, lName: req.body.lName, email: req.body.email, pass: req.body.passwd };
