@@ -9,7 +9,7 @@
     <!--adding a favicon-->
     
     <link rel="shortcut icon" href="../../public/images/trumpetCat.jfif" type="image/jpg">
-    <!-- <script src="../../itemtype.js" defer></script> -->
+    <script src="../../public/js/itemtype.js" defer></script>
 </head>
 <body>
 
@@ -60,7 +60,7 @@
     <hr>
 
     <main>
-        <section id="listItem" action="/insertItem" method="post">
+        <form id="listItem" action="/insertItem" method="post">
             <!-- section to upload photo of item -->
             <div id="upload">
             Upload pictures of your product
@@ -81,7 +81,7 @@
                 <input type="checkbox" id="sculptBox" value="Sculpture" name="itemType">
                 <label for="sculptBox">Sculpture </label> <br>
             </div>
-            
+            <input type="hidden" name="hiddenInput" id="hiddenInput" />
             <!-- section to add the date of creation -->
             <div id="creationDate">
             Enter the date of creation for your product
@@ -113,7 +113,10 @@
                 <input type="submit" name="submitItem" id="submitItem">
             </div>
 
-        </section>
+        </form>
+
+        <input type="button" name="acceptItem" id="acceptItem" value="accept">
+
     </main>
     
 </body>

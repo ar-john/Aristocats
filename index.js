@@ -99,31 +99,35 @@ app.post("/insertUsers", (req, res) => {
 // this is the post method that will excecute on submit
 // to add an item to the database
 app.post("/insertItem", (req,res) => {
-    valueV = getSelectedValue(itemType);
-    let data = { item_name: req.body.itemName, item_type: valueV, item_price: req.body.itemPrice,
+    
+    let data = { item_name: req.body.itemName, item_type: req.body.hiddenInput, item_price: req.body.itemPrice,
     item_img: req.body.filename, creation_date: req.body.creationDate, item_desc: req.body.itemDesc };
     let sql = `INSERT INTO items SET ?`;
+    console.log(data);
+
     let query = db.query (sql, data, (err, result) => {
         if (err){
             throw err;
         }
         // need to make this page still
-        res.render("/itemListed.ejs");
+        res.render("html/itemListed.ejs");
     });
 });
 
 
 
 //FUNCTIONS
-function getSelectedValue(name) {
+
+//function for checkbox value
+// function getSelectedValue(name) {
     // const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
     // let valueV = "";
     // checkboxes.forEach((checkbox) => {
     //     valueV.push(checkbox.value);
     // });
-    let valueV = document.querySelectorAll(`input[name="${name}"]:checked`);
-    return valueV;
-}
+    // let valueV = document.querySelectorAll(`input[name="${name}"]:checked`);
+    // return valueV;
+// }
 
 // set PORT
 const PORT = process.env.PORT || 3000;
