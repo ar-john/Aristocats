@@ -2,9 +2,12 @@ const express = require('express');
 const ejs = require('ejs');
 const path = require("path");
 const mysql = require("mysql");
+const fs = require('fs');
 
 //require multer
 const multer = require('multer');
+//provide upload dest
+//const upload = multer({ dest: './public/data/uploads/' });
 
 
 
@@ -34,27 +37,28 @@ db.connect((err) => {
 //multer code
 
 //storage
-let storage = multer.diskStorage({
-    destination: function (req, file, callback) {
-      callback(null, DIR);
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-});
+// let storage = multer.diskStorage({
+//     destination: function (req, file, callback) {
+//       callback(null, DIR);
+//     },
+//     filename: function (req, file, cb) {
+//       cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+//     }
+// });
  
-let upload = multer({storage: storage});
+//let upload = multer({storage: storage});
+
 //multer img upload thing
-app.post('/api/v1/upload',upload.single('filename1'), function (req, res) {
-    // message : "Error! in image upload."
-    //   if (!req.file) {
-    //       console.log("No file received");
-    //         message = "Error! in image upload."
-    //       res.render('index',{message: message, status:'danger'});
+// app.post('/uploadPic',upload.single('filename1'), function (req, res) {
+//     message : "Error! in image upload."
+//       if (!req.file) {
+//           console.log("No file received");
+//             message = "Error! in image upload."
+//           res.render('html/listItem.ejs',{message: message, status:'danger'});
       
-    //     } else {
-    //       console.log('file received');
-    //       console.log(req);
+//         } else {
+//           console.log('file received');
+        //   console.log(req);
     //       var sql = "INSERT INTO `file`(`name`, `type`, `size`) VALUES ('" + req.file.filename + "', '"+req.file.mimetype+"', '"+req.file.size+"')";
    
     //               var query = db.query(sql, function(err, result) {
@@ -64,8 +68,107 @@ app.post('/api/v1/upload',upload.single('filename1'), function (req, res) {
     //       res.render('index',{message: message, status:'success'});
    
     //     }
-    console.log(req.file, req.body);
-  });
+    // let file1 = app.use("/images",express.static("./public/data/uploads")) => {
+        
+    // )};
+
+//     console.log(req.file, req.body);
+// }});
+
+// const { static } = require('express');
+// app.use('/images', static('./public/data/uploads/'));
+
+// exports.download = (req, res, next) => {
+//     console.log('fileController.download: started')
+//     const path = req.body.path
+//     const file = fs.createReadStream(path)
+//     const filename = (new Date()).toISOString()
+//     res.setHeader('Content-Disposition', 'attachment: filename="' + filename + '"')
+//     file.pipe(res)
+//   }
+
+
+
+
+
+
+//NEW TRY AT MULTER CODE
+
+
+//storage
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'images/')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname)
+      // cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    },  
+});
+
+const limits = {
+    fileSize : 4000000
+}
+
+//fileFilter function controls which files should be uploaded. req = request being made. file = contains file info. cb = callback function to tell multer when we are done filtering the file. send back an error message to the client with cb.
+const fileFilter =(req, file, cb) => {
+    //if the file is not a jpg, jpeg, or png file, do not upload it multer; reject it.
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+        return cb(new Error('File must be of type JPG, JPEG, or PNG and nore more than 2MB in size'))
+    }
+    //undefined = nothing went wrong; true = that is true, nothing went wrong, accept the upload.
+    cb(undefined, true)
+}
+
+//set up the multer middleware
+const upload = multer({
+    storage: storage,
+    limits: limits,
+    fileFilter: fileFilter
+      // filename: filename
+})
+
+app.post('/uploadPic',upload.single('filename1'), function (req, res) {
+
+   console.log(req.file, req.body);
+});
+
+
+
+  
+
+//upload image post route: localhost:port/upload
+app.post("/upload", upload.any(), (req, res) => {
+ 
+
+    // res.send();
+    //mysql stuff
+    // var sql = "INSERT INTO `file`(`name`, `type`, `size`) VALUES ('" + req.file.filename + "', '"+req.file.mimetype+"', '"+req.file.size+"')";
+    let data = { item_name: req.body.itemName, item_type: req.body.hiddenInput, item_price: req.body.itemPrice,
+        item_img: [req.file.filename], creation_date: req.body.creationDate, item_desc: req.body.itemDesc };
+    let sql = `INSERT INTO items SET ?`;
+    let query = db.query(sql, data, (err, result) => {
+       console.log('inserted data');
+    });
+    message = "Successfully! uploaded";
+    //res.render('index',{message: message, status:'success'});
+    //end of mysql stuff
+     
+    res.redirect('./');
+   
+}), (error, req, res, next) => {
+    res.render("html/itemListed.ejs");
+    // res.redirect('/');
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -141,21 +244,21 @@ app.post("/insertUsers", (req, res) => {
 
 // this is the post method that will excecute on submit
 // to add an item to the database
-app.post("/insertItem", (req,res) => {
+// app.post("/insertItem", (req,res) => {
     
-    let data = { item_name: req.body.itemName, item_type: req.body.hiddenInput, item_price: req.body.itemPrice,
-    item_img: req.body.filename, creation_date: req.body.creationDate, item_desc: req.body.itemDesc };
-    let sql = `INSERT INTO items SET ?`;
-    console.log(data);
+//     let data = { item_name: req.body.itemName, item_type: req.body.hiddenInput, item_price: req.body.itemPrice,
+//     item_img: req.body.filename, creation_date: req.body.creationDate, item_desc: req.body.itemDesc };
+//     let sql = `INSERT INTO items SET ?`;
+//     console.log(data);
 
-    let query = db.query (sql, data, (err, result) => {
-        if (err){
-            throw err;
-        }
-        // need to make this page still
-        res.render("html/itemListed.ejs");
-    });
-});
+//     let query = db.query (sql, data, (err, result) => {
+//         if (err){
+//             throw err;
+//         }
+//         // need to make this page still
+//         res.render("html/itemListed.ejs");
+//     });
+// });
 
 
 
