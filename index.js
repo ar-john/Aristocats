@@ -184,7 +184,7 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname));
 //ALL ROUTES - GET
 app.get("/", (req,res) => {
-    res.render("index");
+    res.render("/index.ejs");
 });
 
 app.get("/html/artpage.ejs", (req,res) => {
