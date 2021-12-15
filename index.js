@@ -78,14 +78,6 @@ db.connect((err) => {
 // const { static } = require('express');
 // app.use('/images', static('./public/data/uploads/'));
 
-// exports.download = (req, res, next) => {
-//     console.log('fileController.download: started')
-//     const path = req.body.path
-//     const file = fs.createReadStream(path)
-//     const filename = (new Date()).toISOString()
-//     res.setHeader('Content-Disposition', 'attachment: filename="' + filename + '"')
-//     file.pipe(res)
-//   }
 
 
 
@@ -129,28 +121,19 @@ const upload = multer({
       // filename: filename
 })
 
-app.post('/uploadPic',upload.single('filename1'), function (req, res) {
-
-   console.log(req.file, req.body);
-});
-
 
 
 // const cpUpload = upload.fields([{ name: 'itemName', maxCount: 1}, { name: 'hiddenInput', maxCount: 1}, 
 //             { name: 'itemPrice', maxCount: 1}, { name: 'filename', maxCount: 1},
 //             { name: 'creationDate', maxCount: 1}, { name: 'itemDesc', maxCount: 1} ]);
 
-//upload image post route: localhost:port/upload
+//upload image post route
 app.post("/upload", upload.fields([{ name: 'itemName', maxCount: 1}, { name: 'hiddenInput', maxCount: 1}, 
 { name: 'itemPrice', maxCount: 1}, { name: 'filename', maxCount: 1},
 { name: 'creationDate', maxCount: 1}, { name: 'itemDesc', maxCount: 1} ])
 , (req, res) => {
  
 
-    //res.send();
-    // console.log(req.files['filename'][0]);
-    //mysql stuff
-    // var sql = "INSERT INTO `file`(`name`, `type`, `size`) VALUES ('" + req.file.filename + "', '"+req.file.mimetype+"', '"+req.file.size+"')";
     let data = { item_name: req.body.itemName, item_type: req.body.hiddenInput, item_price: req.body.itemPrice,
         item_img: req.files['filename'][0], creation_date: req.body.creationDate, item_desc: req.body.itemDesc };
     let sql = `INSERT INTO items SET ?`;
@@ -213,12 +196,7 @@ app.get("/html/clothingPage.ejs", (req,res) => {
 });
 
 app.get("/html/itemsPage.ejs", (req,res) => {
-    // let sql = `SELECT * FROM items WHERE item_type='clothing'`;
-    // db.query(sql, function (err, data, fields){
-    //     if (err) throw err;
-    //     res. render('itemsPage', { title: 'Item Page', itemData: data});
-    // });
-    // console.log('Displaying items');
+
     res.render("./html/itemsPage.ejs");
 });
 
@@ -264,39 +242,20 @@ app.post("/insertUsers", (req, res) => {
     });
   });
 
-// this is the post method that will excecute on submit
-// to add an item to the database
-// app.post("/insertItem", (req,res) => {
-    
-//     let data = { item_name: req.body.itemName, item_type: req.body.hiddenInput, item_price: req.body.itemPrice,
-//     item_img: req.body.filename, creation_date: req.body.creationDate, item_desc: req.body.itemDesc };
-//     let sql = `INSERT INTO items SET ?`;
-//     console.log(data);
-
-//     let query = db.query (sql, data, (err, result) => {
-//         if (err){
-//             throw err;
-//         }
-//         // need to make this page still
-//         res.render("html/itemListed.ejs");
-//     });
-// });
 
 
 
-//FUNCTIONS
 
-//function for checkbox value
-// function getSelectedValue(name) {
-    // const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
-    // let valueV = "";
-    // checkboxes.forEach((checkbox) => {
-    //     valueV.push(checkbox.value);
-    // });
-    // let valueV = document.querySelectorAll(`input[name="${name}"]:checked`);
-    // return valueV;
-// }
+
 
 // set PORT
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log('Server is running on port 3000'));
+
+
+//References
+// https://stackoverflow.com/questions/23175006/how-to-check-multiple-checkboxes-with-javascript
+// https://stackoverflow.com/questions/20871577/how-to-save-a-javascript-variable-into-a-mysql-database-in-expressjs
+// https://codingstatus.com/how-to-store-image-in-mysql-database-using-node-js/
+// https://stackoverflow.com/questions/67757372/upload-image-to-mysql-with-nodejs-and-multer
+// https://stackoverflow.com/questions/51483507/how-to-save-and-show-the-picture-saved-using-multer-package-in-nodejs
