@@ -71,3 +71,8 @@ h1{
     font-size: 36px;
     
 }
+
+#mainList{
+    padding-top: 2cm;
+    display: block;
+}
