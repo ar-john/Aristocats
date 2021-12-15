@@ -176,7 +176,7 @@ app.post("/upload", upload.fields([{ name: 'itemName', maxCount: 1}, { name: 'hi
 
 //initialize body parser midddleware to parse data sent by users
 app.use(express.json());
-app.use(express.urlencoded({extended: false }));
+app.use(express.urlencoded({extended: true }));
 
 //initialize ejs middleware
 app.set("view engine", "ejs");
@@ -184,7 +184,7 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname));
 //ALL ROUTES - GET
 app.get("/", (req,res) => {
-    res.render("/index.ejs");
+    res.render("index");
 });
 
 app.get("/html/artpage.ejs", (req,res) => {
