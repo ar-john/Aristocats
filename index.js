@@ -98,7 +98,7 @@ db.connect((err) => {
 //storage
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, 'images/')
+      cb(null, 'public/images/')
     },
     filename: function (req, file, cb) {
       cb(null, file.originalname)
@@ -124,7 +124,8 @@ const fileFilter =(req, file, cb) => {
 const upload = multer({
     storage: storage,
     limits: limits,
-    fileFilter: fileFilter
+    dest: './public/data/uploads/',
+    //fileFilter: fileFilter
       // filename: filename
 })
 
@@ -135,26 +136,33 @@ app.post('/uploadPic',upload.single('filename1'), function (req, res) {
 
 
 
-  
+// const cpUpload = upload.fields([{ name: 'itemName', maxCount: 1}, { name: 'hiddenInput', maxCount: 1}, 
+//             { name: 'itemPrice', maxCount: 1}, { name: 'filename', maxCount: 1},
+//             { name: 'creationDate', maxCount: 1}, { name: 'itemDesc', maxCount: 1} ]);
 
 //upload image post route: localhost:port/upload
-app.post("/upload", upload.any(), (req, res) => {
+app.post("/upload", upload.fields([{ name: 'itemName', maxCount: 1}, { name: 'hiddenInput', maxCount: 1}, 
+{ name: 'itemPrice', maxCount: 1}, { name: 'filename', maxCount: 1},
+{ name: 'creationDate', maxCount: 1}, { name: 'itemDesc', maxCount: 1} ])
+, (req, res) => {
  
 
-    // res.send();
+    //res.send();
+    // console.log(req.files['filename'][0]);
     //mysql stuff
     // var sql = "INSERT INTO `file`(`name`, `type`, `size`) VALUES ('" + req.file.filename + "', '"+req.file.mimetype+"', '"+req.file.size+"')";
     let data = { item_name: req.body.itemName, item_type: req.body.hiddenInput, item_price: req.body.itemPrice,
-        item_img: [req.file.filename], creation_date: req.body.creationDate, item_desc: req.body.itemDesc };
+        item_img: req.files['filename'][0], creation_date: req.body.creationDate, item_desc: req.body.itemDesc };
     let sql = `INSERT INTO items SET ?`;
     let query = db.query(sql, data, (err, result) => {
        console.log('inserted data');
+       
     });
     message = "Successfully! uploaded";
     //res.render('index',{message: message, status:'success'});
     //end of mysql stuff
      
-    res.redirect('./');
+    res.redirect("html/itemListed.ejs");
    
 }), (error, req, res, next) => {
     res.render("html/itemListed.ejs");
@@ -162,7 +170,15 @@ app.post("/upload", upload.any(), (req, res) => {
 }
 
 
+// app.get('/itemsPage',function(req,res,next) {
+//     let sql = `SELECT * FROM items WHERE item_type='clothing'`;
+//     db.query(sql, function (err, data, fields){
+//         if (err) throw err;
+//         res. render('itemsPage', { title: 'Item Page', itemData: data});
+//     });
+//     console.log('Displaying items');
 
+// });
 
 
 
@@ -181,8 +197,8 @@ app.use(express.urlencoded({extended: false }));
 
 //initialize ejs middleware
 app.set("view engine", "ejs");
-app.use("/public", express.static(__dirname + "/public"));
-
+//app.use("/public", express.static(__dirname + "/public"));
+app.use(express.static(__dirname));
 //ALL ROUTES - GET
 app.get("/", (req,res) => {
     res.render("index");
@@ -197,6 +213,12 @@ app.get("/html/clothingPage.ejs", (req,res) => {
 });
 
 app.get("/html/itemsPage.ejs", (req,res) => {
+    // let sql = `SELECT * FROM items WHERE item_type='clothing'`;
+    // db.query(sql, function (err, data, fields){
+    //     if (err) throw err;
+    //     res. render('itemsPage', { title: 'Item Page', itemData: data});
+    // });
+    // console.log('Displaying items');
     res.render("./html/itemsPage.ejs");
 });
 
