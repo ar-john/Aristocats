@@ -2,9 +2,9 @@
   "name": "aristocats",
   "version": "1.0.0",
   "description": "CSI2520 WebDesign Project - Aristocats. A website for buying and selling original products.",
-  "main": "index.js",
+  "main": "index",
   "scripts": {
-    "start":"node index.js"
+    "start":"node index"
   },
   "repository": {
     "type": "git",
